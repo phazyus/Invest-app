@@ -7,16 +7,6 @@ import plotly.express as px
 ################################
 
 
-
-@st.cache
-def fred_data_yoy(index_name):
-  data = pdr.DataReader(index_name,'fred')
-  data_yoy = data.pct_change(12).mul(100).round(2).dropna()
-  fig , ax = plt.subplots(figsize= (20,10))
-  plt.bar(x=data_yoy.index ,height = data_yoy[index_name], color ='maroon' ,width = 20)
-  plt.xticks(rotation = 90,fontsize =20)
-  plt.yticks(fontsize =20)
-  return fig ,ax
 NYSE_csv = 'nasdaq_screener.csv'
 index_csv = 'World Index.csv'
 NYSE = pd.read_csv(NYSE_csv)
@@ -48,8 +38,8 @@ yoy = data.pct_change(12).mul(100).round(2).dropna()
 ind = ['^IXIC' , '^DJI' , '^GSPC']
 met = yf.download(ind,start='2022-02-02')['Close'].round(2)
 pct = round(met.pct_change()*100,2)
-with open('style.css') as f:
-  st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html= True)
+##with open('style.css') as f:
+  ##st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html= True)
   
 st.header('Major index')
 col1 ,col2 ,col3 = st.columns(3)
