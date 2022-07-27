@@ -38,8 +38,8 @@ yoy = data.pct_change(12).mul(100).round(2).dropna()
 ind = ['^IXIC' , '^DJI' , '^GSPC']
 met = yf.download(ind,start='2022-02-02')['Close'].round(2)
 pct = round(met.pct_change()*100,2)
-##with open('style.css') as f:
-  ##st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html= True)
+with open('style.css') as f:
+   st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html= True)
   
 st.header('Major index')
 col1 ,col2 ,col3 = st.columns(3)
